@@ -1,0 +1,305 @@
+.body-login {
+  background-image: url("../../assets/Images/bg.jpg");
+  font-family: "Lato", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
+  font-weight: normal;
+  color: #808080;
+  position: fixed;
+  z-index: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.body-login:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  content: "";
+  background: black;
+  opacity: 0.3;
+  z-index: -1;
+}
+.body-login a {
+  transition: 0.3s all ease;
+  color: #fbceb5;
+}
+.body-login a:hover,
+.body-login a:focus {
+  text-decoration: none !important;
+  outline: none !important;
+  box-shadow: none;
+}
+
+.body-login h1,
+.body-login h2,
+.body-login h3,
+.body-login h4,
+.body-login h5,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5 {
+  line-height: 1.5;
+  font-weight: 400;
+  font-family: "Lato", Arial, sans-serif;
+  color: black;
+}
+
+.body-login .ftco-section {
+  padding: 7em 0;
+}
+.body-login .ftco-no-pt {
+  padding-top: 0;
+}
+.body-login .ftco-no-pb {
+  padding-bottom: 0;
+}
+.body-login .heading-section {
+  font-size: 28px;
+  color: white;
+}
+
+/* //COVER BG */
+.body-login .img {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.body-login .login-wrap {
+  position: relative;
+  color: rgba(255, 255, 255, 0.9);
+}
+.body-login .login-wrap h3 {
+  font-weight: 300;
+  color: white;
+}
+.body-login .login-wrap .social {
+  width: 100%;
+}
+.body-login .login-wrap .social a {
+  width: 100%;
+  display: block;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: black;
+  background: white;
+}
+.body-login .login-wrap .social a:hover {
+  background: black;
+  color: white;
+  border-color: black;
+}
+.body-login .form-group {
+  position: relative;
+}
+.body-login .form-group {
+  margin-bottom: 1rem;
+}
+.body-login .field-icon {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* //FORM CONTROL */
+.body-login .form-control {
+  background: transparent;
+  border: none;
+  height: 50px;
+  color: rgba(255, 255, 255, 1) !important;
+  border: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+  transition: 0.3s;
+}
+.body-login .form-control::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+.body-login .form-control::-moz-placeholder {
+  /* Firefox 19+ */
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+.body-login .form-control:-ms-input-placeholder {
+  /* IE 10+ */
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+.body-login .form-control:-moz-placeholder {
+  /* Firefox 18- */
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+.body-login .form-control:hover,
+.body-login .form-control:focus {
+  background: transparent;
+  outline: none;
+  box-shadow: none;
+  border-color: rgba(255, 255, 255, 0.4);
+}
+.body-login .form-control:focus {
+  border-color: rgba(255, 255, 255, 0.4);
+}
+.body-login textarea.form-control {
+  height: inherit !important;
+}
+/* BUTTON */
+.body-login .btn-hover {
+  width: 100%;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  height: 55px;
+  text-align: center;
+  border: none;
+  background-size: 300% 100%;
+  border-radius: 50px;
+  -moz-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+.body-login .btn-hover:hover {
+  background-position: 100% 0;
+  -moz-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+.body-login .btn-hover:focus {
+  outline: none;
+}
+.body-login .btn-hover.color-8 {
+  background-image: linear-gradient(
+    to right,
+    #29323c,
+    #485563,
+    #2b5876,
+    #4e4376
+  );
+  box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 0.75);
+}
+/* //CHECKBOX STYLE */
+.body-login .checkbox-wrap {
+  display: block;
+  position: relative;
+  padding-left: 30px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+/* Hide the browser's default checkbox */
+.body-login .checkbox-wrap input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+/* Create a custom checkbox */
+.body-login .checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+/* Create the checkmark/indicator (hidden when not checked) */
+.body-login .checkmark:after {
+  content: "\f0c8";
+  font-family: "FontAwesome";
+  position: absolute;
+  color: rgba(255, 255, 255, 0.1);
+  font-size: 20px;
+  margin-top: -4px;
+  transition: 0.3s;
+}
+/* Show the checkmark when checked */
+.body-login .checkbox-wrap input:checked ~ .checkmark:after {
+  display: block;
+  content: "\f14a";
+  font-family: "FontAwesome";
+  color: rgba(0, 0, 0, 0.2);
+}
+/* Style the checkmark/indicator */
+.body-login .checkbox-primary {
+  color: #fbceb5;
+}
+.body-login .checkbox-primary input:checked ~ .checkmark:after {
+  color: #fbceb5;
+}
+
+.body-login .error {
+  border: 1px solid red;
+}
+
+/* loadding */
+@keyframes spin {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.spinner {
+  position: fixed;
+  top: 24%;
+  left: 47.5%;
+  width: 70px;
+  height: 80px;
+  z-index: 0;
+  overflow: hidden;
+}
+.spinner div:first-child {
+  display: block;
+  position: relative;
+  left: 73px;
+  top: 78px;
+  width: 50px;
+  height: 50px;
+  margin: -75px 0 0 -75px;
+  border-radius: 50%;
+  box-shadow: 0 3px 3px 0 rgba(255, 56, 106, 1);
+  transform: translate3d(0, 0, 0);
+  animation: spin 2s linear infinite;
+}
+.spinner div:first-child:after,
+.spinner div:first-child:before {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+}
+.spinner div:first-child:before {
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  box-shadow: 0 3px 3px 0 rgb(255, 228, 32);
+  -webkit-animation: spin 3s linear infinite;
+  animation: spin 3s linear infinite;
+}
+.spinner div:first-child:after {
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  box-shadow: 0 3px 3px 0 rgba(61, 175, 255, 1);
+  animation: spin 1.5s linear infinite;
+}
+.spinner .loading-login {
+  position: absolute;
+  top: 56px;
+  left: 6px;
+}

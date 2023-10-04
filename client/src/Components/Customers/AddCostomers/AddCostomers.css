@@ -1,0 +1,12 @@
+.addcostomers {
+  flex-shrink: 1 !important;
+  padding: 0;
+}
+.addcostomers .img-avatar {
+  object-fit: contain;
+  object-position: 50% 50%;
+}
+.addcostomers .row-cols-3 > * {
+  flex: 0 0 auto;
+  width: 33.3333333333% !important;
+}

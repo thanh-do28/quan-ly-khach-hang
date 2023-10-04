@@ -1,0 +1,13 @@
+.home-page {
+  flex-shrink: 1 !important;
+  padding: 0;
+}
+.home-page .content-wrapper-home {
+  margin-top: 7rem;
+}
+.home-page .layout-navbar {
+  z-index: 1;
+}
+.home-page .layout-navbar input {
+  width: 30rem !important;
+}

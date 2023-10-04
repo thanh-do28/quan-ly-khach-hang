@@ -1,0 +1,62 @@
+.allcostomers {
+  flex-shrink: 1 !important;
+  padding: 0;
+}
+.allcostomers .layout-navbar {
+  z-index: 2;
+}
+.allcostomers .layout-navbar input {
+  width: 30rem !important;
+}
+.allcostomers .table-allcostomers {
+  margin-top: 5rem;
+}
+.allcostomers .allcostomers-edit {
+  visibility: hidden;
+  background-color: black;
+  color: white;
+  padding: 1px 5px;
+  border-radius: 3px;
+  position: absolute;
+  left: -10%;
+  opacity: 0;
+  transform: opacity 1s ease;
+}
+.allcostomers .allcostomers-del {
+  visibility: hidden;
+  background-color: black;
+  color: white;
+  padding: 1px 5px;
+  border-radius: 3px;
+  position: absolute;
+  opacity: 0;
+  transform: opacity 0.5s ease;
+}
+.allcostomers .allcostomers-edit::after {
+  content: "";
+  position: absolute;
+  left: 57%;
+  top: 100%;
+  transform: translateX(-50%);
+  border: 5px solid;
+  border-color: #000 #0000 #0000 #0000;
+}
+.allcostomers .allcostomers-del::after {
+  content: "";
+  position: absolute;
+  left: 57%;
+  top: 100%;
+  transform: translateX(-100%);
+  border: 5px solid;
+  border-color: #000 #0000 #0000 #0000;
+}
+.allcostomers .btn-allcostomers-edit:hover .allcostomers-edit {
+  top: -125%;
+  visibility: visible;
+  opacity: 1;
+}
+.allcostomers .btn-allcostomers-del:hover .allcostomers-del {
+  top: -125%;
+  visibility: visible;
+  opacity: 1;
+}
