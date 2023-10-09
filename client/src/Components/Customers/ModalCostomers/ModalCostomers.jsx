@@ -149,10 +149,17 @@ export default function ModalCostomers() {
                     <h6 className='mx-4'>Implementation Date :</h6>
                     <h5>26/09/2023</h5>
                   </div>
-                  <div className='d-flex align-items-center me-5 mt-1'>
-                    <h6 className='mx-4'>Status :</h6>
-                    <h5>chờ khám lại</h5>
+                  <div className='d-flex'>
+                    <div className='d-flex align-items-center me-5 mt-1'>
+                      <h6 className='mx-4'>Status :</h6>
+                      <h5>khám lại lần 1</h5>
+                    </div>
+                    <div className='d-flex align-items-center me-5 mt-1'>
+                      <h6 className='mx-4'>Re-examination Date :</h6>
+                      <h5>25/10/2023</h5>
+                    </div>
                   </div>
+
                   <div className='d-flex align-items-center me-5 mt-1'>
                     <h6 className='mx-4'>Note :</h6>
                     <span className='mb-2'>Bệnh nhân bị béo như heo</span>

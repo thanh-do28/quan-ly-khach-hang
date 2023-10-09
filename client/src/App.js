@@ -6,6 +6,8 @@ import AllCostomers from "./Components/Customers/AllCostomers/AllCostomers";
 import AddCostomers from "./Components/Customers/AddCostomers/AddCostomers";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
+import ReexaminationOne from "./Components/Customers/Reexamination/ReexaminationOne";
+import ReexaminationTwo from "./Components/Customers/Reexamination/ReexaminationTwo";
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
           <Route index element={<HomeComponent />} />
           <Route path='/home' element={<HomeComponent />} />
           <Route path='/all-customers' element={<AllCostomers />} />
+          <Route path='/re-examination-one' element={<ReexaminationOne />} />
+          <Route path='/re-examination-two' element={<ReexaminationTwo />} />
           <Route path='/add-customers' element={<AddCostomers />} />
         </Route>
         <Route path='/login' element={<Login />}></Route>

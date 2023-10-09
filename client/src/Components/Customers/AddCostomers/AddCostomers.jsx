@@ -12,7 +12,7 @@ export default function AddCostomers() {
   const [formData, setFormData] = useReducer(formReducer, {});
   const [fileAvatar, setFileAvatar] = useReducer(formReducer, {});
   const [dataAvatar, setDataAvatar] = useState(null);
-  const [fileBefore, setFileBefore] = useReducer(formReducer, {});
+  const [fileBefore, setFileBefore] = useReducer(formReducer, []);
   const [dataBefore, setDataBefore] = useState([]);
   const [fileAfter, setFileAfter] = useReducer(formReducer, {});
   const [dataAfter, setDataAfter] = useState([]);
@@ -47,11 +47,70 @@ export default function AddCostomers() {
       });
     }
   };
+
   const handleFileChangeBefore = (event) => {
     console.log(event.target.files);
+    if (event.target.files && event.target.files[0]) {
+      const files = event.target.files;
+      for (let i = 0; i < files.length; i++) {
+        const reader = new FileReader();
+        const file = files[i];
+        reader.onloadend = () => {
+          setDataBefore((dataBefore) => [
+            ...dataBefore,
+            {
+              imagePreview: reader.result,
+              nameImg: file.name,
+            },
+          ]);
+        };
+
+        reader.readAsDataURL(file);
+      }
+      setFileBefore({
+        name: event.target.name,
+        value: files,
+      });
+    } else {
+      setDataBefore([]);
+      setFileBefore({
+        name: event.target.name,
+        value: null,
+      });
+    }
   };
 
-  console.log(fileAvatar);
+  const handleFileChangeAfter = (event) => {
+    if (event.target.files && event.target.files[0]) {
+      const files = event.target.files;
+      for (let i = 0; i < files.length; i++) {
+        const reader = new FileReader();
+        const file = files[i];
+        reader.onloadend = () => {
+          setDataAfter((fileAfter) => [
+            ...fileAfter,
+            {
+              imagePreview: reader.result,
+              nameImg: file.name,
+            },
+          ]);
+        };
+
+        reader.readAsDataURL(file);
+      }
+      setFileAfter({
+        name: event.target.name,
+        value: files,
+      });
+    } else {
+      setDataAfter([]);
+      setFileAfter({
+        name: event.target.name,
+        value: null,
+      });
+    }
+  };
+
   const handleSubmitAdd = (event) => {
     event.preventDefault();
 
@@ -188,73 +247,73 @@ export default function AddCostomers() {
           <div>
             <label className='form-label'>Index :</label>
             <div className='row row-cols-3'>
-              <div class='col input-group mb-3'>
-                <div class='input-group-text'>
+              <div className='col input-group mb-3'>
+                <div className='input-group-text'>
                   <span>Height</span>
                 </div>
                 <input
                   type='number'
-                  class='form-control'
+                  className='form-control'
                   aria-label='Text input with checkbox'
                   min='0'
                 />
-                <div class='input-group-text'>
+                <div className='input-group-text'>
                   <span>Cm</span>
                 </div>
               </div>
-              <div class='col input-group mb-3'>
-                <div class='input-group-text'>
+              <div className='col input-group mb-3'>
+                <div className='input-group-text'>
                   <span>Weight</span>
                 </div>
                 <input
                   type='number'
-                  class='form-control'
+                  className='form-control'
                   aria-label='Text input with checkbox'
                   min='0'
                 />
-                <div class='input-group-text'>
+                <div className='input-group-text'>
                   <span>Kg</span>
                 </div>
               </div>
-              <div class='col input-group mb-3'>
-                <div class='input-group-text'>
+              <div className='col input-group mb-3'>
+                <div className='input-group-text'>
                   <span>Chest</span>
                 </div>
                 <input
                   type='number'
-                  class='form-control'
+                  className='form-control'
                   aria-label='Text input with checkbox'
                   min='0'
                 />
-                <div class='input-group-text'>
+                <div className='input-group-text'>
                   <span>Cm</span>
                 </div>
               </div>
-              <div class='col input-group mb-3'>
-                <div class='input-group-text'>
+              <div className='col input-group mb-3'>
+                <div className='input-group-text'>
                   <span>Belly</span>
                 </div>
                 <input
                   type='number'
-                  class='form-control'
+                  className='form-control'
                   aria-label='Text input with checkbox'
                   min='0'
                 />
-                <div class='input-group-text'>
+                <div className='input-group-text'>
                   <span>Cm</span>
                 </div>
               </div>
-              <div class='col input-group mb-3'>
-                <div class='input-group-text'>
+              <div className='col input-group mb-3'>
+                <div className='input-group-text'>
                   <span>Butt</span>
                 </div>
                 <input
                   type='number'
-                  class='form-control'
+                  className='form-control'
                   aria-label='Text input with checkbox'
                   min='0'
                 />
-                <div class='input-group-text'>
+                <div className='input-group-text'>
                   <span>Cm</span>
                 </div>
               </div>
@@ -424,14 +483,38 @@ export default function AddCostomers() {
               <label htmlFor='status' className='form-label'>
                 Status :
               </label>
-
-              <input
+              <select
                 onChange={handleChange}
-                type='text'
-                className='form-control'
+                className='form-select'
+                aria-label='Default select example'
                 id='status'
                 name='status'
-                placeholder='Nhập trạng thái'
+                required
+              >
+                <option defaultValue>Chọn trạng thái</option>
+                <option value='1'>Khám lại lần 1</option>
+                <option value='2'>Khám lại lần 2</option>
+                <option value='3'>Khám lại lần 3</option>
+                <option value='4'>Khám lại lần 4</option>
+                <option value='5'>Khám lại lần 5</option>
+                <option value='6'>Khám lại lần 6</option>
+                <option value='0'>Hoàn thành</option>
+              </select>
+            </div>
+            <div
+              style={{ width: "25%" }}
+              className='align-items-center mb-3 me-5'
+            >
+              <label htmlFor='examination' className='form-label'>
+                Day examination :
+              </label>
+              <input
+                onChange={handleChange}
+                type='date'
+                className='form-control'
+                id='examination'
+                name='examination'
+                placeholder='Chọn ngày khám '
                 required
               />
             </div>
@@ -458,99 +541,93 @@ export default function AddCostomers() {
           <div>
             <label className='form-label'>Surgery times :</label>
             <div className='row row-cols-3'>
-              <div class='col input-group mb-3'>
-                <div class='input-group-text'>
+              <div className='col input-group mb-3'>
+                <div className='input-group-text'>
                   <input
-                    class='form-check-input mt-0 me-3'
+                    className='form-check-input mt-0 me-3'
                     type='checkbox'
-                    value=''
                     aria-label='Checkbox for following text input'
                   />
                   <span>lần 1</span>
                 </div>
                 <input
                   type='date'
-                  class='form-control'
+                  className='form-control'
                   aria-label='Text input with checkbox'
                 />
               </div>
-              <div class='col input-group mb-3'>
-                <div class='input-group-text'>
+              <div className='col input-group mb-3'>
+                <div className='input-group-text'>
                   <input
-                    class='form-check-input mt-0 me-3'
+                    className='form-check-input mt-0 me-3'
                     type='checkbox'
-                    value=''
                     aria-label='Checkbox for following text input'
                   />
                   <span>lần 2</span>
                 </div>
                 <input
                   type='date'
-                  class='form-control'
+                  className='form-control'
                   aria-label='Text input with checkbox'
                 />
               </div>
-              <div class='col input-group mb-3'>
-                <div class='input-group-text'>
+              <div className='col input-group mb-3'>
+                <div className='input-group-text'>
                   <input
-                    class='form-check-input mt-0 me-3'
+                    className='form-check-input mt-0 me-3'
                     type='checkbox'
-                    value=''
                     aria-label='Checkbox for following text input'
                   />
                   <span>lần 3</span>
                 </div>
                 <input
                   type='date'
-                  class='form-control'
+                  className='form-control'
                   aria-label='Text input with checkbox'
                 />
               </div>
-              <div class='col input-group mb-3'>
-                <div class='input-group-text'>
+              <div className='col input-group mb-3'>
+                <div className='input-group-text'>
                   <input
-                    class='form-check-input mt-0 me-3'
+                    className='form-check-input mt-0 me-3'
                     type='checkbox'
-                    value=''
                     aria-label='Checkbox for following text input'
                   />
                   <span>lần 4</span>
                 </div>
                 <input
                   type='date'
-                  class='form-control'
+                  className='form-control'
                   aria-label='Text input with checkbox'
                 />
               </div>
-              <div class='col input-group mb-3'>
-                <div class='input-group-text'>
+              <div className='col input-group mb-3'>
+                <div className='input-group-text'>
                   <input
-                    class='form-check-input mt-0 me-3'
+                    className='form-check-input mt-0 me-3'
                     type='checkbox'
-                    value=''
                     aria-label='Checkbox for following text input'
                   />
                   <span>lần 5</span>
                 </div>
                 <input
                   type='date'
-                  class='form-control'
+                  className='form-control'
                   aria-label='Text input with checkbox'
                 />
               </div>
-              <div class='col input-group mb-3'>
-                <div class='input-group-text'>
+              <div className='col input-group mb-3'>
+                <div className='input-group-text'>
                   <input
-                    class='form-check-input mt-0 me-3'
+                    className='form-check-input mt-0 me-3'
                     type='checkbox'
-                    value=''
                     aria-label='Checkbox for following text input'
                   />
                   <span>lần 6</span>
                 </div>
                 <input
                   type='date'
-                  class='form-control'
+                  className='form-control'
                   aria-label='Text input with checkbox'
                 />
               </div>
@@ -577,19 +654,25 @@ export default function AddCostomers() {
                 </label>
               </div>
               <div className='row row-cols-4'>
-                <div className='g-col-4 mb-3' style={{ height: "150px" }}>
-                  {dataBefore.length != 0 ? (
-                    <>
+                {dataBefore.length != 0 ? (
+                  dataBefore.map((e, key) => (
+                    <div
+                      key={key}
+                      className='g-col-4 mb-3'
+                      style={{ height: "150px" }}
+                    >
                       <img
                         className='w-100 h-100 img-avatar'
-                        src={dataBefore?.imagePreview}
+                        src={e.imagePreview}
                         alt=''
                       />
-                    </>
-                  ) : (
+                    </div>
+                  ))
+                ) : (
+                  <div className='g-col-4 mb-3' style={{ height: "150px" }}>
                     <img className='w-100 h-100' src={errorImg} alt='' />
-                  )}
-                </div>
+                  </div>
+                )}
               </div>
             </div>
 
@@ -599,7 +682,7 @@ export default function AddCostomers() {
                 <label className='form-label w-25'>Ảnh sau mổ :</label>
                 <input
                   style={{ display: "none" }}
-                  onChange={handleChange}
+                  onChange={handleFileChangeAfter}
                   className='form-control'
                   type='file'
                   id='formFileAfter'
@@ -612,19 +695,22 @@ export default function AddCostomers() {
                 </label>
               </div>
               <div className='row row-cols-4'>
-                <div className='g-col-4 mb-3' style={{ height: "150px" }}>
-                  {dataAfter.length != 0 ? (
-                    <>
+                {dataAfter.length != 0 ? (
+                  dataAfter.map((e, key) => (
+                    <div className='g-col-4 mb-3' style={{ height: "150px" }}>
                       <img
+                        key={key}
                         className='w-100 h-100 img-avatar'
-                        src={dataAfter?.imagePreview}
+                        src={e.imagePreview}
                         alt=''
                       />
-                    </>
-                  ) : (
+                    </div>
+                  ))
+                ) : (
+                  <div className='g-col-4 mb-3' style={{ height: "150px" }}>
                     <img className='w-100 h-100' src={errorImg} alt='' />
-                  )}
-                </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
