@@ -10,6 +10,33 @@ const formReducer = (state, event) => {
 
 export default function AddCostomers() {
   const [formData, setFormData] = useReducer(formReducer, {});
+  const [index, setIndex] = useState({});
+  const [surgeryTimes, setSurgeryTimes] = useState([
+    {
+      surgery1nd: false,
+      surgery1ndDate: "",
+    },
+    {
+      surgery2nd: false,
+      surgery2ndDate: "",
+    },
+    {
+      surgery3nd: false,
+      surgery3ndDate: "",
+    },
+    {
+      surgery4nd: false,
+      surgery4ndDate: "",
+    },
+    {
+      surgery5nd: false,
+      surgery5ndDate: "",
+    },
+    {
+      surgery6nd: false,
+      surgery6ndDate: "",
+    },
+  ]);
   const [fileAvatar, setFileAvatar] = useReducer(formReducer, {});
   const [dataAvatar, setDataAvatar] = useState(null);
   const [fileBefore, setFileBefore] = useReducer(formReducer, []);
@@ -17,6 +44,7 @@ export default function AddCostomers() {
   const [fileAfter, setFileAfter] = useReducer(formReducer, {});
   const [dataAfter, setDataAfter] = useState([]);
 
+  // lấy value trong form
   const handleChange = (event) => {
     setFormData({
       name: event.target.name,
@@ -24,6 +52,7 @@ export default function AddCostomers() {
     });
   };
 
+  // lấy ảnh avatar trong form
   const handleFileChangeAvatar = (event) => {
     if (event.target.files && event.target.files[0]) {
       let reader = new FileReader();
@@ -48,8 +77,43 @@ export default function AddCostomers() {
     }
   };
 
+  // xóa ảnh avatar
+  const handleDleAvatar = () => {
+    console.log("aaa");
+  };
+
+  // thời gian mổ
+  const handleSurgeryTimesChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setSurgeryTimes((prevSurgeryTimes) => {
+      // Kiểm tra xem name có tồn tại trong mảng prevSurgeryTimes không
+      const index = prevSurgeryTimes.findIndex((item) => name in item);
+      // Nếu name đã tồn tại, cập nhật giá trị
+      if (index !== -1) {
+        return prevSurgeryTimes.map((item, i) =>
+          i === index
+            ? { ...item, [name]: type === "checkbox" ? checked : value }
+            : item
+        );
+      }
+    });
+  };
+
+  // lấy index
+  const handleIndexChange = (e) => {
+    const { name, value } = e.target;
+    setIndex((prevIndex) => {
+      // Check if name already exists in prevIndex
+      if (name in prevIndex) {
+        return { ...prevIndex, [name]: value }; // Update existing property
+      } else {
+        return { ...prevIndex, [name]: value }; // Add new property
+      }
+    });
+  };
+
+  // lấy ảnh trước mổ trong form
   const handleFileChangeBefore = (event) => {
-    console.log(event.target.files);
     if (event.target.files && event.target.files[0]) {
       const files = event.target.files;
       for (let i = 0; i < files.length; i++) {
@@ -80,6 +144,7 @@ export default function AddCostomers() {
     }
   };
 
+  // lấy ảnh sau mổ trong form
   const handleFileChangeAfter = (event) => {
     if (event.target.files && event.target.files[0]) {
       const files = event.target.files;
@@ -113,8 +178,12 @@ export default function AddCostomers() {
 
   const handleSubmitAdd = (event) => {
     event.preventDefault();
-
+    console.log(fileAvatar.formFileAvatar);
     console.log(formData);
+    console.log(index);
+    console.log(surgeryTimes);
+    console.log(fileBefore.formFileBefore);
+    console.log(fileAfter.formFileAfter);
   };
 
   // return
@@ -138,23 +207,30 @@ export default function AddCostomers() {
                 type='file'
                 id='formFileAvatar'
                 name='formFileAvatar'
-                multiple
               />
             </div>
             <div className='w-75 d-flex align-items-center'>
-              <div className='w-25 mb-3' style={{ height: "125px" }}>
+              <div
+                className='w-25 mb-3 position-relative'
+                style={{ height: "125px" }}
+              >
                 {dataAvatar ? (
-                  <img
-                    className='w-100 h-100 img-avatar'
-                    src={dataAvatar?.imagePreview}
-                    alt=''
-                  />
+                  <>
+                    <img
+                      className='w-100 h-100 img-avatar'
+                      src={dataAvatar?.imagePreview}
+                      alt=''
+                    />
+                    <button type='button' className='del-btn-avatar'>
+                      <i className='far fa-times-circle'></i>
+                    </button>
+                  </>
                 ) : (
                   <img className='w-100 h-100' src={errorImg} alt='' />
                 )}
               </div>
               <div className='col-9 ps-5'>
-                <label htmlFor='formFileAvatar'>
+                <label className='img-hover' htmlFor='formFileAvatar'>
                   Chọn hình ảnh upload &nbsp;&nbsp;&nbsp;&nbsp;
                   <i className='text-info'>( chọn 1 ảnh )</i>
                 </label>
@@ -185,7 +261,7 @@ export default function AddCostomers() {
               className='d-flex align-items-center mb-3'
             >
               <label htmlFor='yearofbirth' className='form-label w-25'>
-                Year of Birth :
+                Year of &nbsp; Birth :
               </label>
               <div className='input-group mb-3 w-75'>
                 <input
@@ -255,7 +331,9 @@ export default function AddCostomers() {
                   type='number'
                   className='form-control'
                   aria-label='Text input with checkbox'
+                  name='height'
                   min='0'
+                  onChange={handleIndexChange}
                 />
                 <div className='input-group-text'>
                   <span>Cm</span>
@@ -269,7 +347,9 @@ export default function AddCostomers() {
                   type='number'
                   className='form-control'
                   aria-label='Text input with checkbox'
+                  name='weight'
                   min='0'
+                  onChange={handleIndexChange}
                 />
                 <div className='input-group-text'>
                   <span>Kg</span>
@@ -283,7 +363,9 @@ export default function AddCostomers() {
                   type='number'
                   className='form-control'
                   aria-label='Text input with checkbox'
+                  name='chest'
                   min='0'
+                  onChange={handleIndexChange}
                 />
                 <div className='input-group-text'>
                   <span>Cm</span>
@@ -297,7 +379,9 @@ export default function AddCostomers() {
                   type='number'
                   className='form-control'
                   aria-label='Text input with checkbox'
+                  name='belly'
                   min='0'
+                  onChange={handleIndexChange}
                 />
                 <div className='input-group-text'>
                   <span>Cm</span>
@@ -311,7 +395,9 @@ export default function AddCostomers() {
                   type='number'
                   className='form-control'
                   aria-label='Text input with checkbox'
+                  name='butt'
                   min='0'
+                  onChange={handleIndexChange}
                 />
                 <div className='input-group-text'>
                   <span>Cm</span>
@@ -547,6 +633,8 @@ export default function AddCostomers() {
                     className='form-check-input mt-0 me-3'
                     type='checkbox'
                     aria-label='Checkbox for following text input'
+                    name='surgery1nd'
+                    onChange={handleSurgeryTimesChange}
                   />
                   <span>lần 1</span>
                 </div>
@@ -554,6 +642,8 @@ export default function AddCostomers() {
                   type='date'
                   className='form-control'
                   aria-label='Text input with checkbox'
+                  name='surgery1ndDate'
+                  onChange={handleSurgeryTimesChange}
                 />
               </div>
               <div className='col input-group mb-3'>
@@ -562,6 +652,8 @@ export default function AddCostomers() {
                     className='form-check-input mt-0 me-3'
                     type='checkbox'
                     aria-label='Checkbox for following text input'
+                    name='surgery2nd'
+                    onChange={handleSurgeryTimesChange}
                   />
                   <span>lần 2</span>
                 </div>
@@ -569,6 +661,8 @@ export default function AddCostomers() {
                   type='date'
                   className='form-control'
                   aria-label='Text input with checkbox'
+                  name='surgery2ndDate'
+                  onChange={handleSurgeryTimesChange}
                 />
               </div>
               <div className='col input-group mb-3'>
@@ -577,6 +671,8 @@ export default function AddCostomers() {
                     className='form-check-input mt-0 me-3'
                     type='checkbox'
                     aria-label='Checkbox for following text input'
+                    name='surgery3nd'
+                    onChange={handleSurgeryTimesChange}
                   />
                   <span>lần 3</span>
                 </div>
@@ -584,6 +680,8 @@ export default function AddCostomers() {
                   type='date'
                   className='form-control'
                   aria-label='Text input with checkbox'
+                  name='surgery3ndDate'
+                  onChange={handleSurgeryTimesChange}
                 />
               </div>
               <div className='col input-group mb-3'>
@@ -592,6 +690,8 @@ export default function AddCostomers() {
                     className='form-check-input mt-0 me-3'
                     type='checkbox'
                     aria-label='Checkbox for following text input'
+                    name='surgery4nd'
+                    onChange={handleSurgeryTimesChange}
                   />
                   <span>lần 4</span>
                 </div>
@@ -599,6 +699,8 @@ export default function AddCostomers() {
                   type='date'
                   className='form-control'
                   aria-label='Text input with checkbox'
+                  name='surgery4ndDate'
+                  onChange={handleSurgeryTimesChange}
                 />
               </div>
               <div className='col input-group mb-3'>
@@ -607,6 +709,8 @@ export default function AddCostomers() {
                     className='form-check-input mt-0 me-3'
                     type='checkbox'
                     aria-label='Checkbox for following text input'
+                    name='surgery5nd'
+                    onChange={handleSurgeryTimesChange}
                   />
                   <span>lần 5</span>
                 </div>
@@ -614,6 +718,8 @@ export default function AddCostomers() {
                   type='date'
                   className='form-control'
                   aria-label='Text input with checkbox'
+                  name='surgery5ndDate'
+                  onChange={handleSurgeryTimesChange}
                 />
               </div>
               <div className='col input-group mb-3'>
@@ -622,6 +728,8 @@ export default function AddCostomers() {
                     className='form-check-input mt-0 me-3'
                     type='checkbox'
                     aria-label='Checkbox for following text input'
+                    name='surgery6nd'
+                    onChange={handleSurgeryTimesChange}
                   />
                   <span>lần 6</span>
                 </div>
@@ -629,6 +737,8 @@ export default function AddCostomers() {
                   type='date'
                   className='form-control'
                   aria-label='Text input with checkbox'
+                  name='surgery6ndDate'
+                  onChange={handleSurgeryTimesChange}
                 />
               </div>
             </div>
@@ -648,7 +758,10 @@ export default function AddCostomers() {
                   name='formFileBefore'
                   multiple
                 />
-                <label htmlFor='formFileBefore' className='form-label'>
+                <label
+                  htmlFor='formFileBefore'
+                  className='img-hover form-label'
+                >
                   Chọn hình ảnh upload &nbsp;&nbsp;&nbsp;&nbsp;
                   <i className='text-info'>( chọn tối đa 8 ảnh )</i>
                 </label>
@@ -678,7 +791,7 @@ export default function AddCostomers() {
 
             {/* thêm ảnh sau mổ */}
             <div>
-              <div className='d-flex align-items-center  mb-3'>
+              <div className='d-flex align-items-center mb-3'>
                 <label className='form-label w-25'>Ảnh sau mổ :</label>
                 <input
                   style={{ display: "none" }}
@@ -689,7 +802,7 @@ export default function AddCostomers() {
                   name='formFileAfter'
                   multiple
                 />
-                <label htmlFor='formFileAfter' className='form-label'>
+                <label htmlFor='formFileAfter' className='img-hover form-label'>
                   Chọn hình ảnh upload &nbsp;&nbsp;&nbsp;&nbsp;
                   <i className='text-info'>( chọn tối đa 8 ảnh )</i>
                 </label>
@@ -697,9 +810,12 @@ export default function AddCostomers() {
               <div className='row row-cols-4'>
                 {dataAfter.length != 0 ? (
                   dataAfter.map((e, key) => (
-                    <div className='g-col-4 mb-3' style={{ height: "150px" }}>
+                    <div
+                      key={key}
+                      className='g-col-4 mb-3'
+                      style={{ height: "150px" }}
+                    >
                       <img
-                        key={key}
                         className='w-100 h-100 img-avatar'
                         src={e.imagePreview}
                         alt=''

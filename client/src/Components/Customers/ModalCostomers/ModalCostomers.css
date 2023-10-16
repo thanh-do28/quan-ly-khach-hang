@@ -1,0 +1,51 @@
+.customer-details {
+  z-index: 3 !important;
+}
+.customer-details .show-img-avatar .img-show-avatar {
+  cursor: zoom-in;
+}
+.customer-details .img-show-before {
+  cursor: zoom-in;
+}
+.customer-details .img-show-after {
+  cursor: zoom-in;
+}
+.customer-details .show-img-avatar .modalImg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 4;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-show-modal {
+  box-shadow: none !important;
+}
+.customer-details .show-img-avatar .modalImg .intro-modalImg {
+  max-width: 80%;
+  max-height: 100%;
+  margin: auto;
+  position: relative;
+}
+.customer-details .show-img-avatar .modalImg .intro-modalImg img {
+  width: 100%;
+  height: 90vh;
+}
+.customer-details .show-img-avatar .modalImg .close {
+  position: absolute;
+  top: 0px;
+  right: 15px;
+  font-size: 25px;
+  cursor: pointer;
+  color: red;
+}
+.customer-details .show-img-avatar .modalImg .close:hover {
+  color: #aaa;
+}

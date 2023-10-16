@@ -1,18 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
+import "./ModalCostomers.css";
 
 export default function ModalCostomers() {
+  const [isModalImgAvatarOpen, setIsModalImgAvatarOpen] = useState(false);
+  const [avatarImage, setAvatarImage] = useState(null);
+
+  const healdShowImg = (e) => {
+    setIsModalImgAvatarOpen(true);
+    setAvatarImage(e);
+  };
+  const healdCloseImg = () => {
+    setIsModalImgAvatarOpen(false);
+    setAvatarImage(null);
+  };
+
   return (
     <div>
       <button
         type='button'
-        className='btn btn-primary'
+        className='btn btn-primary btn-show-modal'
         data-bs-toggle='modal'
         data-bs-target='#exampleModal'
       >
         Detail
       </button>
       <div
-        className='modal fade'
+        className='modal fade customer-details'
         id='exampleModal'
         tablndex='-1'
         aria-labelledby='exampleModalLabel'
@@ -33,14 +46,31 @@ export default function ModalCostomers() {
             </div>
             <div className='modal-body'>
               {/* thông tin khách hàng */}
-              <div className='d-flex'>
+              <div className='d-flex show-img-avatar'>
                 <div className='w-25 mx-5'>
                   <img
-                    className='w-100'
+                    className='w-100 img-show-avatar'
                     src='https://bizweb.dktcdn.net/100/438/408/files/anh-chan-dung-dep-yodyvn1.jpg?v=1683537734987'
-                    alt=''
+                    alt='Avatar'
+                    title='avatar'
+                    onClick={() =>
+                      healdShowImg(
+                        "https://bizweb.dktcdn.net/100/438/408/files/anh-chan-dung-dep-yodyvn1.jpg?v=1683537734987"
+                      )
+                    }
                   />
                 </div>
+                {/* show ảnh */}
+                {isModalImgAvatarOpen && (
+                  <div className='modalImg'>
+                    <div className='intro-modalImg'>
+                      <span className='close' onClick={healdCloseImg}>
+                        &times;
+                      </span>
+                      <img src={avatarImage} alt='Selected Image' />
+                    </div>
+                  </div>
+                )}
                 <div>
                   <div className='d-flex align-items-center my-1'>
                     <h6 className='mx-4'>Full name :</h6>
@@ -198,9 +228,15 @@ export default function ModalCostomers() {
                   <h6 className='text-start mx-4'>Pre-operative Photo :</h6>
                   <div className='row'>
                     <img
-                      className='w-25 my-2'
-                      src='https://bizweb.dktcdn.net/100/438/408/files/anh-chan-dung-dep-yodyvn1.jpg?v=1683537734987'
-                      alt=''
+                      className='w-25 my-2 img-show-before'
+                      src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgGPfkRtLqMqMKjFhfPa6VLjzD1SnGyR9pHQ&usqp=CAU'
+                      alt='Avatar'
+                      title='avatar'
+                      onClick={() =>
+                        healdShowImg(
+                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgGPfkRtLqMqMKjFhfPa6VLjzD1SnGyR9pHQ&usqp=CAU"
+                        )
+                      }
                     />
                     <img
                       className='w-25 my-2'
@@ -228,9 +264,14 @@ export default function ModalCostomers() {
                   <h6 className='text-start mx-4'>Post-operative Photo :</h6>
                   <div className='row'>
                     <img
-                      className='w-25 my-2'
+                      className='w-25 my-2 img-show-after'
                       src='https://bizweb.dktcdn.net/100/438/408/files/anh-chan-dung-dep-yodyvn1.jpg?v=1683537734987'
                       alt=''
+                      onClick={() =>
+                        healdShowImg(
+                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgGPfkRtLqMqMKjFhfPa6VLjzD1SnGyR9pHQ&usqp=CAU"
+                        )
+                      }
                     />
                     <img
                       className='w-25 my-2'

@@ -54,6 +54,7 @@ export default function ReexaminationOne() {
                   <th scope='row'>1</th>
                   <td>
                     <img
+                      style={{ maxHeight: "25vh" }}
                       className='w-50'
                       src='https://bizweb.dktcdn.net/100/438/408/files/anh-chan-dung-dep-yodyvn1.jpg?v=1683537734987'
                       alt=''

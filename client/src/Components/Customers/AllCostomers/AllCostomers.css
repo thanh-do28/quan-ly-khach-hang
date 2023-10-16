@@ -2,6 +2,9 @@
   flex-shrink: 1 !important;
   padding: 0;
 }
+.allcostomers .container-xxl {
+  max-width: none;
+}
 .allcostomers .layout-navbar {
   z-index: 2;
 }

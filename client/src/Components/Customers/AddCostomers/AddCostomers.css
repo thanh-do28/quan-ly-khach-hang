@@ -10,3 +10,27 @@
   flex: 0 0 auto;
   width: 33.3333333333% !important;
 }
+.addcostomers input,
+select {
+  outline: none !important;
+  box-shadow: none !important;
+}
+.addcostomers select:hover {
+  border: 1px solid blue;
+  color: blue;
+}
+.addcostomers input:hover {
+  border: 1px solid blue;
+  color: blue;
+}
+.addcostomers .img-hover:hover {
+  color: blue;
+}
+.addcostomers .del-btn-avatar {
+  position: absolute;
+  border: none;
+  background: transparent;
+  color: red;
+  top: 0;
+  right: 0;
+}
