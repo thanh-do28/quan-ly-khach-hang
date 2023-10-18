@@ -5,7 +5,7 @@ import ModalCostomers from "../ModalCostomers/ModalCostomers";
 export default function ReexaminationOne() {
   return (
     <>
-      <div className='card allcostomers position-relative'>
+      <div className='allcostomers position-relative'>
         <nav
           className='layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme bg-secondary position-fixed'
           id='layout-navbar'

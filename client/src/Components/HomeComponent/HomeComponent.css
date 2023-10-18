@@ -2,6 +2,9 @@
   flex-shrink: 1 !important;
   padding: 0;
 }
+.home-page .btn-primary:focus {
+  box-shadow: none !important;
+}
 .home-page .content-wrapper-home {
   margin-top: 7rem;
 }

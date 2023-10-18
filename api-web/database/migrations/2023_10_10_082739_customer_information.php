@@ -26,6 +26,7 @@ return new class extends Migration
             $table->integer('material')->nullable();
             $table->integer('size')->nullable();
             $table->integer('volume')->nullable();
+            $table->string('brand')->nullable();
             $table->integer('status')->nullable();
             $table->date('examination')->nullable();
             $table->string('note')->nullable();

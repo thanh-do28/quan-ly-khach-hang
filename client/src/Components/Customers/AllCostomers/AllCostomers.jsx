@@ -5,7 +5,7 @@ import ModalCostomers from "../ModalCostomers/ModalCostomers";
 export default function AllCostomers() {
   return (
     <>
-      <div className='card allcostomers position-relative'>
+      <div className='allcostomers position-relative'>
         <nav
           className='layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme bg-secondary position-fixed'
           id='layout-navbar'
@@ -54,8 +54,8 @@ export default function AllCostomers() {
                   <th scope='row'>1</th>
                   <td>
                     <img
-                      style={{ maxHeight: "25vh" }}
-                      className='w-50'
+                      style={{ maxHeight: "30vh" }}
+                      className='w-50 img-avatar'
                       src='https://bizweb.dktcdn.net/100/438/408/files/anh-chan-dung-dep-yodyvn1.jpg?v=1683537734987'
                       alt=''
                     />

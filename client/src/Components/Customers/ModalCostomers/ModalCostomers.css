@@ -49,3 +49,6 @@
 .customer-details .show-img-avatar .modalImg .close:hover {
   color: #aaa;
 }
+.customer-details .img-detail-show img {
+  max-height: 30vh;
+}

@@ -10,8 +10,12 @@
   flex: 0 0 auto;
   width: 33.3333333333% !important;
 }
+.addcostomers button {
+  box-shadow: none !important;
+}
 .addcostomers input,
-select {
+select,
+textarea {
   outline: none !important;
   box-shadow: none !important;
 }
@@ -23,14 +27,52 @@ select {
   border: 1px solid blue;
   color: blue;
 }
-.addcostomers .img-hover:hover {
+.addcostomers textarea:hover {
+  border: 1px solid blue;
   color: blue;
 }
+.addcostomers .img-hover:hover {
+  color: blue;
+  cursor: pointer;
+}
+
+.addcostomers .img-hover-avatar:hover .del-btn-avatar {
+  visibility: visible;
+  transition: 3s;
+}
+.addcostomers .img-hover-before:hover .del-btn-before {
+  visibility: visible;
+  transition: 3s;
+}
+.addcostomers .img-hover-after:hover .del-btn-after {
+  visibility: visible;
+  transition: 3s;
+}
+
 .addcostomers .del-btn-avatar {
+  visibility: hidden;
   position: absolute;
   border: none;
   background: transparent;
   color: red;
   top: 0;
   right: 0;
+}
+.addcostomers .del-btn-before {
+  visibility: hidden;
+  position: absolute;
+  border: none;
+  background: transparent;
+  color: red;
+  top: -2%;
+  right: 5%;
+}
+.addcostomers .del-btn-after {
+  visibility: hidden;
+  position: absolute;
+  border: none;
+  background: transparent;
+  color: red;
+  top: -2%;
+  right: 5%;
 }

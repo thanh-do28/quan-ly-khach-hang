@@ -52,6 +52,10 @@ export default function AddCostomers() {
     });
   };
 
+  const henadOnclick = (e) => {
+    e.target.value = "";
+  };
+
   // lấy ảnh avatar trong form
   const handleFileChangeAvatar = (event) => {
     if (event.target.files && event.target.files[0]) {
@@ -79,7 +83,11 @@ export default function AddCostomers() {
 
   // xóa ảnh avatar
   const handleDleAvatar = () => {
-    console.log("aaa");
+    setDataAvatar(null);
+    setFileAvatar({
+      name: null,
+      value: null,
+    });
   };
 
   // thời gian mổ
@@ -144,6 +152,20 @@ export default function AddCostomers() {
     }
   };
 
+  // xóa ảnh đã chọn trước mổ
+  const handleDelBefore = (e) => {
+    let data = [...dataBefore];
+    data.splice(e, 1);
+    setDataBefore(data);
+
+    let updatedFiles = [...fileBefore.formFileBefore];
+    updatedFiles.splice(index, 1);
+    setFileBefore({
+      name: "formFileBefore",
+      value: updatedFiles,
+    });
+  };
+
   // lấy ảnh sau mổ trong form
   const handleFileChangeAfter = (event) => {
     if (event.target.files && event.target.files[0]) {
@@ -176,6 +198,20 @@ export default function AddCostomers() {
     }
   };
 
+  // xóa ảnh đã chọn sau mổ
+  const handleDelAfter = (e) => {
+    let data = [...dataAfter];
+    data.splice(e, 1);
+    setDataAfter(data);
+
+    let updatedFiles = [...fileAfter.formFileAfter];
+    updatedFiles.splice(index, 1);
+    setFileAfter({
+      name: "formFileAfter",
+      value: updatedFiles,
+    });
+  };
+
   const handleSubmitAdd = (event) => {
     event.preventDefault();
     console.log(fileAvatar.formFileAvatar);
@@ -202,6 +238,7 @@ export default function AddCostomers() {
               <label className='form-label w-25'>Avatar :</label>
               <input
                 onChange={handleFileChangeAvatar}
+                onClick={henadOnclick}
                 style={{ display: "none" }}
                 className='form-control me-5'
                 type='file'
@@ -211,7 +248,7 @@ export default function AddCostomers() {
             </div>
             <div className='w-75 d-flex align-items-center'>
               <div
-                className='w-25 mb-3 position-relative'
+                className='w-25 mb-3 position-relative img-hover-avatar'
                 style={{ height: "125px" }}
               >
                 {dataAvatar ? (
@@ -221,7 +258,11 @@ export default function AddCostomers() {
                       src={dataAvatar?.imagePreview}
                       alt=''
                     />
-                    <button type='button' className='del-btn-avatar'>
+                    <button
+                      type='button'
+                      className='del-btn-avatar'
+                      onClick={handleDleAvatar}
+                    >
                       <i className='far fa-times-circle'></i>
                     </button>
                   </>
@@ -560,6 +601,58 @@ export default function AddCostomers() {
             </div>
           </div>
 
+          <div className='d-flex align-items-center justify-content-between'>
+            {/* thêm thương hiệu */}
+            <div className='d-flex align-items-center mb-3'>
+              <label
+                style={{ width: "40%" }}
+                htmlFor='brand'
+                className='form-label'
+              >
+                Brand :
+              </label>
+              <input
+                onChange={handleChange}
+                type='text'
+                className='form-control'
+                id='brand'
+                name='brand'
+                placeholder='Nhập thương hiệu'
+                required
+              />
+            </div>
+
+            {/* để trống */}
+            <div className='d-flex align-items-center mb-3'>
+              <label htmlFor='' className='form-label w-25 '>
+                @@ :
+              </label>
+
+              <input
+                type='text'
+                className='form-control'
+                id=''
+                name=''
+                placeholder='để trống'
+              />
+            </div>
+
+            {/* để trống */}
+            <div className='d-flex align-items-center mb-3'>
+              <label style={{ width: "35%" }} htmlFor='' className='form-label'>
+                @@ :
+              </label>
+
+              <input
+                type='text'
+                className='form-control'
+                id=''
+                name=''
+                placeholder='để trống'
+              />
+            </div>
+          </div>
+
           <div className='d-flex align-items-center'>
             {/* thêm trạng thái */}
             <div
@@ -744,7 +837,7 @@ export default function AddCostomers() {
             </div>
           </div>
 
-          <div>
+          <div className='mt-3'>
             {/* thêm ảnh trước mổ */}
             <div>
               <div className='d-flex align-items-center mb-3'>
@@ -752,6 +845,7 @@ export default function AddCostomers() {
                 <input
                   style={{ display: "none" }}
                   onChange={handleFileChangeBefore}
+                  onClick={henadOnclick}
                   className='form-control'
                   type='file'
                   id='formFileBefore'
@@ -771,7 +865,7 @@ export default function AddCostomers() {
                   dataBefore.map((e, key) => (
                     <div
                       key={key}
-                      className='g-col-4 mb-3'
+                      className='g-col-4 mb-3 position-relative img-hover-before'
                       style={{ height: "150px" }}
                     >
                       <img
@@ -779,6 +873,13 @@ export default function AddCostomers() {
                         src={e.imagePreview}
                         alt=''
                       />
+                      <button
+                        type='button'
+                        className='del-btn-before'
+                        onClick={() => handleDelBefore(key)}
+                      >
+                        <i className='far fa-times-circle'></i>
+                      </button>
                     </div>
                   ))
                 ) : (
@@ -796,6 +897,7 @@ export default function AddCostomers() {
                 <input
                   style={{ display: "none" }}
                   onChange={handleFileChangeAfter}
+                  onClick={henadOnclick}
                   className='form-control'
                   type='file'
                   id='formFileAfter'
@@ -807,12 +909,12 @@ export default function AddCostomers() {
                   <i className='text-info'>( chọn tối đa 8 ảnh )</i>
                 </label>
               </div>
-              <div className='row row-cols-4'>
+              <div className='row row-cols-4 '>
                 {dataAfter.length != 0 ? (
                   dataAfter.map((e, key) => (
                     <div
                       key={key}
-                      className='g-col-4 mb-3'
+                      className='g-col-4 mb-3 position-relative img-hover-after'
                       style={{ height: "150px" }}
                     >
                       <img
@@ -820,6 +922,13 @@ export default function AddCostomers() {
                         src={e.imagePreview}
                         alt=''
                       />
+                      <button
+                        type='button'
+                        className='del-btn-after'
+                        onClick={() => handleDelAfter(key)}
+                      >
+                        <i className='far fa-times-circle'></i>
+                      </button>
                     </div>
                   ))
                 ) : (
@@ -831,7 +940,7 @@ export default function AddCostomers() {
             </div>
           </div>
 
-          <button type='submit' className='btn btn-primary'>
+          <button type='submit' className='btn btn-primary mt-5'>
             Thêm khách hàng
           </button>
         </form>

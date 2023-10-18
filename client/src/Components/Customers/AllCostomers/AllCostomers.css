@@ -63,3 +63,7 @@
   visibility: visible;
   opacity: 1;
 }
+
+.allcostomers .img-avatar {
+  cursor: pointer;
+}

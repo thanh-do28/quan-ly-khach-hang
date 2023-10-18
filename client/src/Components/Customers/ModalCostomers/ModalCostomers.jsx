@@ -223,7 +223,7 @@ export default function ModalCostomers() {
                 </div>
               </div>
               {/* img */}
-              <div>
+              <div className='img-detail-show'>
                 <div>
                   <h6 className='text-start mx-4'>Pre-operative Photo :</h6>
                   <div className='row'>
