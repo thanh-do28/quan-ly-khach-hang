@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Costomers;
+namespace App\Http\Requests\Customers;
 
 use App\Http\Requests\FormRequest;
 
 
-class CostomersRequest extends FormRequest
+class CustomersRequest extends FormRequest
 {
     public function authorize()
     {
